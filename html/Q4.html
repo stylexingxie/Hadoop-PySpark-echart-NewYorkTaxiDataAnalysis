@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta　charset='UTF-8'>
+        <title> 纽约区间出租车出行分布 </title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
+    </head>
+    <body>
+        <div id="Q4" style="width: 1200px;height: 800px;"></div>
+        <script>
+            var myChart=echarts.init(document.getElementById("Q4"));
+            setTimeout(function () {
+
+                 option = {
+                    legend: {},
+                    tooltip: {
+                        trigger: 'axis',
+                        showContent: false
+                    },
+                    dataset: {
+                        source: [
+                            ['Area', 'Manhattan', 'The Bronx', 'Brooklyn', 'Queens', 'Staten Island'],
+                            ['Manhattan', 65246901, 790446, 64393295, 690208, 10302],
+                            ['The Bronx', 168771, 70032, 88012, 5187, 25],
+                            ['Brooklyn', 63917257, 641660, 62391321, 755748, 11468],
+                            ['Queens', 858514, 36784, 1055824, 216744, 2619],
+                            ['Staten Island', 197, 2, 236, 18, 3039]
+                        ]
+                    },
+                    xAxis: {type: 'category'},
+                    yAxis: {gridIndex: 0},
+                    grid: {top: '55%'},
+                    series: [
+                        {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                        {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                        {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                        {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                        {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                        {
+                            type: 'pie',
+                            id: 'pie',
+                            radius: '30%',
+                            center: ['50%', '25%'],
+                            label: {
+                                formatter: '{b}: {@2012} ({d}%)'
+                            },
+                        encode: {
+                            itemName: 'Area',
+                            value: '2012',
+                            tooltip: '2012'
+                        }
+                        }
+                    ]
+                };
+
+                myChart.on('updateAxisPointer', function (event) {
+                    var xAxisInfo = event.axesInfo[0];
+                    if (xAxisInfo) {
+                        var dimension = xAxisInfo.value + 1;
+                        myChart.setOption({
+                            series: {
+                                id: 'pie',
+                                label: {
+                                    formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                                },
+                                encode: {
+                                    value: dimension,
+                                    tooltip: dimension
+                                }
+                            }
+                        });
+                    }
+                });
+
+                myChart.setOption(option);
+
+            });
+        </script>
+    <a  href="../DataAnl.html" title="首页">Back To HomePage</a>
+    </body>
+</html>

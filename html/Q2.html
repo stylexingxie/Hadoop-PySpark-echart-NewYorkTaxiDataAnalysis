@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta　charset='UTF-8'>
+        <title> 纽约出租车乘客人数与行程时间分析 </title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/echarts-gl/1.1.2/echarts-gl.min.js"></script>
+    </head>
+    <body>
+        <div id="Q2" style="width: 800px;height: 600px;"></div>
+        
+        <script>
+            var myChart=echarts.init(document.getElementById("Q2"));
+            var symbolSize = 2.5;
+            var data=[[1,8.0,38.3960377],
+                      [2,8.0,37.3799571],
+                      [3,8.0,37.6218740],
+                      [4,6.6,41.7508608],
+                      [5,6.8,41.2441921],
+                      [6,6.4,36.3886742],
+                      [7,5.0,33.4423143],
+                      [8,4.6,54.6575364],
+                      [9,6.7,67.2352345]];
+            option={
+                title: {
+                text: '纽约出租车乘客人数与行程时间分析',
+                
+                left: 'center'
+                },
+                legend: {
+                    left: 'center',
+                    top: 'bottom',
+                    data: ['Passenger', 'Minutes', 'Probability']
+                },
+                grid3D: {},
+                xAxis3D: {
+                    type: 'category'
+                },
+                yAxis3D: {},
+                zAxis3D: {},
+                dataset: {
+                    dimensions: [
+                        'PassengerNumber',
+                        'Minutes',
+                        'Probability',
+                        //{name: 'Year', type: 'ordinal'}
+                    ],
+                    source: data
+                },
+                series: [
+                    {
+                        type: 'scatter3D',
+                        symbolSize: symbolSize,
+                        encode: {
+                            x: 'PassengerNumber',
+                            y: 'Minutes',
+                            z: 'Probability',
+                            tooltip: [0, 1, 2, 3, 4]
+                        }
+                    }
+                ]
+            };
+            myChart.setOption(option);
+            </script>
+    </body>
+    <body>
+        <div id="Q2_2" style="width: 800px;height: 600px;"></div>
+        <a  href="./Q3.html"  title="纽约Manhattan区通勤时间出租车乘客分布">Manhattan区通勤时间出租车乘客分布</a>
+        <a  href="./Q1.html"  title="纽约各区各时段乘客人数分析">纽约各区各时段乘客人数分析</a>
+        <a  href="../DataAnl.html" title="首页">Back To HomePage</a>
+        <script>
+            var myChart=echarts.init(document.getElementById("Q2_2"));
+            option={
+                title: {
+                    text: '纽约出租车乘客人数高频统计',
+                
+                    left: 'center'
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['1','2','3','4','5','6','7','8','9']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [8.0,8.0,8.0,6.6,6.8,6.4,5.0,4.6,6.7],
+                    type: 'line',
+                    areaStyle: {}
+            }]
+            };
+            myChart.setOption(option);
+        </script>
+    </body>
+</html>

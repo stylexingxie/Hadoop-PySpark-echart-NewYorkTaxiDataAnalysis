@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta　charset='UTF-8'>
+        <title> Manhattan区通勤时间出租车乘客分布</title>
+        <script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+    </head>
+    <body>
+        <div id="Q3" style="width: 800px;height: 600px;"></div>
+        <script>
+            var myChart=echarts.init(document.getElementById("Q3"));
+            var option={
+                title: {
+                text: 'Manhattan区通勤时间出租车乘客分布',
+                
+                left: 'center'
+                },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                left: 'center',
+                top: 'bottom',
+                data: ['The Bronx', 'Manhattan', 'Queens', 'Brooklyn', 'Staten Island']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true, readOnly: false},
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            series: [
+                {
+                    name: '早高峰来Manhattan',
+                    type: 'pie',
+                    radius: [20, 110],
+                    center: ['25%', '50%'],
+                    roseType: 'area',
+                    label: {
+                        show: false
+                    },
+                    emphasis: {
+                        label: {
+                            show: true
+                        }
+                    },
+                    data: [
+                        {value: 222306, name: 'The Bronx'},
+                        {value: 71814625, name: 'Manhattan'},
+                        {value: 1377208, name: 'Queens'},
+                        {value: 69869262, name: 'Brooklyn'},
+                        {value: 2403, name: 'Staten Island'}
+                    ]
+                },
+                {
+                    name: '晚高峰离Manhattan',
+                    type: 'pie',
+                    radius: [30, 110],
+                    center: ['75%', '50%'],
+                    roseType: 'area',
+                    data: [
+                        {value: 917939, name: 'The Bronx'},
+                        {value: 69811984, name: 'Manhattan'},
+                        {value: 1015902, name: 'Queens'},
+                        {value: 68503731, name: 'Brooklyn'},
+                        {value: 16325, name: 'Staten Island'}
+                    ]
+                }
+            ]
+            };
+            myChart.setOption(option);
+        
+        </script>
+    <a  href="./Q2.html"  title="纽约出租车乘客人数与行程时间分析">纽约出租车乘客人数与行程时间分析</a>
+    <a  href="./Q4.html"  title="纽约区间出租车出行分布">纽约区间出租车出行分布</a>
+    <a  href="../DataAnl.html" title="首页">Back To HomePage</a>
+</body>
+</html>
